@@ -33,7 +33,6 @@ const Form = () => {
                 console.log(data);
                 if (data.acknowledged) {
                     Swal.fire({
-                        // position: 'top-end',
                         icon: 'success',
                         title: 'User Added Successfully',
                         showConfirmButton: false,
@@ -46,12 +45,12 @@ const Form = () => {
 
     return (
         <div className=''>
-            <div className='w-3/4 mx-auto mt-10 bg-base-100'>
+            <div className='w-3/4 mx-auto my-12'>
                 <Link to="/">
-                    <button className="btn btn-outline"><FaBackward size={20} />All Users</button>
+                    <button className="btn btn-outline"><FaBackward size={20} /> All Users </button>
                 </Link>
             </div>
-            <div className="hero min-h-screen bg-base-100 -mt-6">
+            <div className="hero min-h-screen bg-base-100 -mt-8">
                 <div className="hero-content flex-col w-3/4">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold text-center">New User</h1>

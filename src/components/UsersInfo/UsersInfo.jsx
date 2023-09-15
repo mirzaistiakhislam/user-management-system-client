@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPencil, FaUserPen } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -7,9 +7,11 @@ const UsersInfo = () => {
 
     const [users, setUsers] = useState([]);
 
-    fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setUsers(data))
+    useEffect(() => {
+        fetch('http://localhost:5000/users')
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
 
     const handleDelete = (id) => {
 
@@ -22,7 +24,7 @@ const UsersInfo = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-            console.log(result);
+            // console.log(result);
             if (result.isConfirmed) {
 
                 fetch(`http://localhost:5000/users/${id}`, {
@@ -32,7 +34,7 @@ const UsersInfo = () => {
                     .then(data => {
                         console.log(data);
                         if (data.deletedCount > 0) {
-                            const restUsers = users.map(user => user._id !== id);
+                            const restUsers = users.filter(user => user._id !== id);
                             setUsers(restUsers);
                             Swal.fire(
                                 'Deleted!',
@@ -41,13 +43,8 @@ const UsersInfo = () => {
                             )
                         }
                     })
-
             }
         })
-
-        fetch(`http://localhost:5000/users`)
-            .then(res => res.json())
-            .then(data => setUsers(data))
     }
 
     return (
@@ -72,7 +69,7 @@ const UsersInfo = () => {
                     <tbody>
                         {
                             users.map((user, i) =>
-                                <tr key={user._id}>
+                                <tr key={i}>
                                     <th>{i + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
