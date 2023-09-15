@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaPencil } from "react-icons/fa6";
+import { FaPencil, FaUserPen } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const UsersInfo = () => {
@@ -50,8 +51,13 @@ const UsersInfo = () => {
     }
 
     return (
-        <div className=''>
-            <div className="overflow-x-auto w-3/4 border mx-auto my-32">
+        <div className='my-32'>
+            <div className='w-3/4 mx-auto mb-6'>
+                <Link to="/new-user">
+                    <button className="btn btn-outline">New User <FaUserPen size={20} /></button>
+                </Link>
+            </div>
+            <div className="overflow-x-auto w-3/4 mx-auto rounded-lg bg-base-200">
                 <table className="table ">
                     <thead>
                         <tr>
@@ -73,7 +79,7 @@ const UsersInfo = () => {
                                     <td>{user.gender}</td>
                                     <td>{user.status}</td>
                                     <td className='flex items-center'>
-                                        <span className='btn btn-outline px-4 py-2'><FaPencil /></span>
+                                        <Link to={`/update-user/${user._id}`}><span className='btn btn-outline px-4 py-2'><FaPencil /></span></Link>
                                         <span onClick={() => handleDelete(user._id)} className='text-xl btn btn-outline px-4 py-2 ml-2'>X</span>
                                     </td>
                                 </tr>

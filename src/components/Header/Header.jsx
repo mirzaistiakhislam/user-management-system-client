@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div>
-            <div className="navbar-center border bg-base-100">
-                <a className="btn btn-ghost normal-case text-xl flex items-center">User Management System</a>
+        <div className='bg-base-200 py-3'>
+            <div className="navbar-center">
+                <Link to="/" className="btn btn-ghost normal-case text-2xl flex items-center">User Management System</Link>
             </div>
         </div>
     );

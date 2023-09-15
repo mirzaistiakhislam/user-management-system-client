@@ -5,7 +5,7 @@ import UsersInfo from '../UsersInfo/UsersInfo';
 const Home = () => {
     return (
         <div>
-            <Form></Form>
+            {/* <Form></Form> */}
             <UsersInfo></UsersInfo>
         </div>
     );
